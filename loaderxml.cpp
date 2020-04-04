@@ -218,3 +218,7 @@ cout<<"termino!"<<endl;
 void LoaderXML::plot(void){
     root->plot(0);
 }
+
+Entidad* getRoot(void){
+  return root;
+}

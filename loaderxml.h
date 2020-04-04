@@ -21,4 +21,5 @@ public:
   LoaderXML();
   void open(string);
   void plot(void);
+  //Entidad* getRoot(void);
 };
