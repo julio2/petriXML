@@ -219,6 +219,6 @@ void LoaderXML::plot(void){
     root->plot(0);
 }
 
-Entidad* getRoot(void){
+Entidad* LoaderXML::getRoot(void){
   return root;
 }

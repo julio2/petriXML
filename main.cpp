@@ -18,9 +18,12 @@ int main(int argc, char** argv){
 
     if(argc>1)
         input.open(argv[1]);
-
+    else
+        input.open("redorg.xml");
     cout<<endl<<endl;
-
     input.plot();
 
+    cout<<endl<<endl<<"Buscando place:"<<endl;
+    Entidad** arry = input.getRoot()->find("place");
+    for(int i=0; arry[i];i++)cout<<"0x"<<hex<<uppercase<<((short*)arry[i])[0]<<endl;
 }

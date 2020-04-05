@@ -85,9 +85,24 @@ bool Entidad::containHijo(string name){
 }
 
 Entidad* Entidad::getHijo(string name){
+    int sep = name.find("/");
+    string nomb;
+    string residuo;
+    residuo.clear();
+    if(sep > 0){
+        nomb = name.substr(0,sep);
+        residuo = name.substr(sep + 1);
+    }
+    else{
+        nomb = name;
+    }
+
   for(int i=0; i<getCantHijos(); i++){
-    if(getHijoPorId(i)->nombre == name){
-      return hijos[i];
+    if(getHijoPorId(i)->nombre == nomb){
+        if(residuo.size() == 0)
+            return hijos[i];
+        else
+            return hijos[i]->getHijo(residuo);
     }
   }
   return NULL;
@@ -127,18 +142,73 @@ string Entidad::getname(void){
 
 //plot
 void Entidad::plot(int level){
-  int i=0;
-  for(int i=0; i<level ;i++)cout<<" ";
-  cout<<"OBJ: "<<nombre<<endl;
-  level++;
 
-  for(i=0;i<valor.size();i++){
-    for(int i=0; i<level ;i++)cout<<" ";
-    cout<<"VALOR: "<<valor[i]<<endl;
-  }
+    const string colorBlack = "\u001b[30m";
+    const string colorRed = "\u001b[31;1m";
+    const string colorGreen = "\u001b[32m";
+    const string colorYellow = "\u001b[33m";
+    const string colorBlue = "\u001b[34m";
+    const string colorMagenta = "\u001b[35m";
+    const string colorCyan = "\u001b[36m";
+    const string colorWhite = "\u001b[37m";
+    const string colorOrange = "\u001b[38;5;202m";
+    const string colorReset = "\u001b[0m";
 
-  for(i=0;i<hijos.size();i++){
-    hijos[i]->plot(level);
-  }
+    int i,j;
+    for(i=0; i<level ;i++)cout<<" ";
 
+    cout<<
+    colorRed<<"OBJ: "<<
+    colorReset<<nombre<<
+    colorMagenta<<" DIR: "<<
+    colorOrange<<"0x"<<hex<<uppercase<<(reinterpret_cast<short*>(this))[0]<<
+    colorReset<<endl;
+
+    level++;
+
+    for(i=0;i<valor.size();i++){
+        for(j=0; j<level ;j++)cout<<" ";
+        cout<<colorGreen<<"VALOR: "<<colorReset<<valor[i]<<endl;
+    }
+
+
+    for(i=0;i<hijos.size();i++){
+        hijos[i]->plot(level);
+    }
+
+}
+
+//devuelve un arreglo de todos los objetos encontrados con el nombre dado
+Entidad** Entidad::find(string objName){
+    int i,j;
+    Entidad** encontrados;
+    Entidad** viejos;
+    Entidad** nuevos;
+    int n,m;
+    encontrados = new Entidad*;
+    *encontrados = 0;
+    for(i=0;i<hijos.size();i++){
+        nuevos = hijos[i]->find(objName);
+        for(n=0; encontrados[n]; n++);
+        for(m=0; nuevos[m]; m++);
+        if(m>0){
+            viejos = encontrados;
+            encontrados = new Entidad*[n+m+1];
+            for(j=0; j<n; j++)encontrados[j]=viejos[j];
+            delete[] viejos;
+            for(j=0; j<m; j++)encontrados[j+n]=nuevos[j];
+            delete[] nuevos;
+            encontrados[n+m]=0;
+        }
+    }
+    if(nombre == objName){
+        for(n=0; encontrados[n]; n++);
+        viejos = encontrados;
+        encontrados = new Entidad*[n+2];
+        for(j=0; j<n; j++)encontrados[j]=viejos[j];
+        delete[] viejos;
+        encontrados[n]=this;
+        encontrados[n+1]=0;
+    }
+    return encontrados;
 }

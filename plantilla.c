@@ -3,13 +3,6 @@
 #define @\_NUMERO_LUGARES @nlug\
 #define @\_NUMERO_TRANSICIONES @trans\
 
-// @\ nombre en mayusculas
-// @#\ nombre en minusculas
-// @nlug\ numero de lugares
-// @trans\ numero de transiciones
-// @t\ datos de las transiciones
-// @l\ datos de los lugares
-
 struct transicion{
   unsigned char value;
   unsigned char sources[8];

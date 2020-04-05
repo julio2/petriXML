@@ -82,3 +82,11 @@ void NAME_SetInput(unsigned char* arry){
     _PetriNAME.Trans[i].value=arry[i];
   }
 }
+
+
+// @\ nombre en mayusculas
+// @#\ nombre en minusculas
+// @nlug\ numero de lugares
+// @trans\ numero de transiciones
+// @t\ datos de las transiciones
+// @l\ datos de los lugares

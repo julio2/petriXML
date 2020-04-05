@@ -7,6 +7,9 @@
 *   @Fecha 14 de febrero del 2020
 *   @Email gambande.julio@gmail.com
 */
+#ifndef _ENTIDAD__H
+#define _ENTIDAD__H
+
 #define TAB "    "
 
 
@@ -58,4 +61,7 @@ public:
     string getname(void);
 
     void plot(int);
+    Entidad** find(string);
 };
+
+#endif
