@@ -21,10 +21,10 @@ struct Petri@#\{
 };
 
 struct Petri@#\ _Petri@#\={
-  {//trans
+  {//transiciones
     @t\
   },
-  { //Lugs
+  { //Lugares
     @l\
   }
 };

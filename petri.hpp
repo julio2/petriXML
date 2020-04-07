@@ -10,9 +10,8 @@
 #ifndef _PETRI__H
 #define _PETRI__H
 
-#include "entidad.h"
-#include "loaderxml.h"
-#include <bool.h>
+#include "entidad.hpp"
+#include "loaderxml.hpp"
 #include <vector>
 
 typedef unsigned char byte;
@@ -24,11 +23,14 @@ private:
     string name;
     bool mrcInicial;
 public:
-    Lugar(string name, bool marcaInicial)
-    Lugar(string name)
+	Lugar(){}
+    Lugar(string name, bool marcaInicial);
+    Lugar(string name);
     void clear(){value=false;}
     void set(){value=true;}
     bool get(){return value;}
+    string getname(){return name;}
+    void plot();
 };
 
 class Transicion{
@@ -38,19 +40,24 @@ private:
     vector<uint8> sinks;
     vector<uint8> sources;
 public:
+	Transicion(){}
     Transicion(string name);
     void Add(uint8 idx,string type);
     uint8* getSinks();
     uint8* getSources();
+    void plot();
 };
 
 class PetriRed{
+    string name;
     vector<Lugar> lugares;
     vector<Transicion> transiciones;
+    void ejecutar(string,ofstream*);
 public:
-  PetriRed()
+  PetriRed();
   void sintetizarXML(LoaderXML* rawData);
   void compilarCfile(char* nameFile);
+  void plot(void);
 };
 
 #endif

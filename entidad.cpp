@@ -8,7 +8,7 @@
 *   @Email gambande.julio@gmail.com
 */
 
-#include "entidad.h"
+#include "entidad.hpp"
 
 //constructor--------------------------------------------
 Entidad::Entidad( const char* name, Entidad* padre):nombre(name){

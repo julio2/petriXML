@@ -13,7 +13,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "entidad.h"
+#include "entidad.hpp"
 #include <string.h>
 using namespace std;
 

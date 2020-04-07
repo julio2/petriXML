@@ -9,7 +9,8 @@
 */
 
 #include <iostream>
-#include "loaderxml.h"
+#include "loaderxml.hpp"
+#include "petri.hpp"
 using namespace std;
 
 
@@ -26,4 +27,14 @@ int main(int argc, char** argv){
     cout<<endl<<endl<<"Buscando place:"<<endl;
     Entidad** arry = input.getRoot()->find("place");
     for(int i=0; arry[i];i++)cout<<"0x"<<hex<<uppercase<<((short*)arry[i])[0]<<endl;
+
+    cout<<endl<<endl;
+
+    PetriRed net;
+
+    net.sintetizarXML(&input);
+    net.plot();
+
+    net.compilarCfile("quiensabe.c");
+
 }
