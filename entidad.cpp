@@ -164,8 +164,15 @@ void Entidad::plot(int level){
     colorOrange<<"0x"<<hex<<uppercase<<(reinterpret_cast<short*>(this))[0]<<
     colorReset<<endl;
 
-    level++;
 
+    
+    for(i=0;i<atributo.size();i++){
+        for(j=0; j<level ;j++)cout<<" ";
+        cout<<colorBlue<<"ATRIB: "<<colorReset<<atributo[i]<<
+        colorRed<<" = "<<colorReset<<valor_atrib[i]<<endl;
+    }
+
+    level++;
     for(i=0;i<valor.size();i++){
         for(j=0; j<level ;j++)cout<<" ";
         cout<<colorGreen<<"VALOR: "<<colorReset<<valor[i]<<endl;

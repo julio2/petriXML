@@ -29,6 +29,7 @@ public:
     void clear(){value=false;}
     void set(){value=true;}
     bool get(){return value;}
+    bool getMI(){return mrcInicial;}
     string getname(){return name;}
     void plot();
 };
@@ -52,12 +53,13 @@ class PetriRed{
     string name;
     vector<Lugar> lugares;
     vector<Transicion> transiciones;
-    void ejecutar(string,ofstream*);
+    static const string version;
 public:
   PetriRed();
   void sintetizarXML(LoaderXML* rawData);
   void compilarCfile(char* nameFile);
   void plot(void);
+  string getVersion(){return version;};
 };
 
 #endif

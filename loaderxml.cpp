@@ -145,6 +145,7 @@ void LoaderXML::open(string archivo){
                 ;//nada
               }else{
                 cadena.clear();
+                cadena.push_back(buffer[i]);
                 estado = A;
               }
               break;
