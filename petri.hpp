@@ -58,7 +58,7 @@ class PetriRed{
 public:
   PetriRed();
   void sintetizarXML(LoaderXML* rawData);
-  void compilarCfile(char* nameFile);
+  void compilarCfile(const char* nameFile);
   void plot(void);
   string getVersion(){return version;};
 };

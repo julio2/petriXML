@@ -55,7 +55,7 @@ void PetriRed::sintetizarXML(LoaderXML* rawData){
 
 
 
-void PetriRed::compilarCfile(char* nameFile){
+void PetriRed::compilarCfile(const char* nameFile){
     ifstream plantilla;
     ofstream cfile,hfile;
     char buffer[200];
@@ -63,14 +63,15 @@ void PetriRed::compilarCfile(char* nameFile){
     string comando;
     enum{RELLENANDO, COPIANDO}estado = COPIANDO;
 
-    for(int i=0;nameFile[i]!='.';i++){
+    for(int i=0;nameFile[i]!='.' && nameFile[i];i++){
         if(nameFile[i]==' ')
             name.push_back('_');
         else
             name.push_back(nameFile[i]);
     }
 
-    string nameCppFile = name;
+    string nameCppFile = "output/";
+    nameCppFile.append(name);
     nameCppFile.append(".c");
     plantilla.open("plantillaC.dot");
     cfile.open(nameCppFile.c_str());
@@ -178,7 +179,8 @@ void PetriRed::compilarCfile(char* nameFile){
 
     plantilla.close();
 
-    string nameHppFile = name;
+    string nameHppFile = "output/";
+    nameHppFile.append(name);
     nameHppFile.append(".h");
     plantilla.open("plantilla.dot");
     hfile.open(nameHppFile.c_str());

@@ -27,7 +27,7 @@ void LoaderXML::open(string archivo){
   bool fin=false;
   bool start=false;
   int j;
-  cout<<archivo<<endl;
+  //cout<<archivo<<endl;
 
   enum{
     CH, //Crea Hijo y asigna padre
@@ -212,7 +212,7 @@ void LoaderXML::open(string archivo){
 
   }
 
-cout<<"termino!"<<endl;
+//cout<<"termino!"<<endl;
 
 }
 
