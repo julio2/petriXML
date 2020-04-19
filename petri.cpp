@@ -10,7 +10,7 @@ PetriRed::PetriRed(){
   transiciones.clear();
 }
 
-const string PetriRed::version = "v0.0.1";
+const string PetriRed::version = "v0.0.2";
 
 void PetriRed::sintetizarXML(LoaderXML* rawData){
     Entidad* input= rawData->getRoot();
@@ -220,6 +220,21 @@ void PetriRed::compilarCfile(char* nameFile){
                     }
                     else if(!comando.compare("vers")){
                         hfile.write(getVersion().c_str(),getVersion().size());
+                    }
+                    else if(!comando.compare("tr")){
+                        for(int i =0; i<transiciones.size();i++){
+                            hfile.write("    ",4);
+                            hfile.write(transiciones[i].getname().c_str(),lugares[i].getname().size());
+                            if(i!=transiciones.size()-1)hfile.write(",\n\r",3);
+                        }
+                    }
+                    else if(!comando.compare("slugs")){
+                        for(int i =0; i<lugares.size();i++){
+                            hfile.write("//    \"",7);
+                            hfile.write(lugares[i].getname().c_str(),lugares[i].getname().size());
+                            if(i!=lugares.size()-1)hfile.write("\"\n\r",3);
+                            else hfile.put('\"');
+                        }
                     }
                     estado=COPIANDO;
                     comando.clear();

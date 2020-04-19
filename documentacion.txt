@@ -4,3 +4,8 @@
  @trans\ numero de transiciones
  @t\ datos de las transiciones
  @l\ datos de los lugares
+
+ $vers\
+ $fecha\
+ $slugs\
+ $tr\

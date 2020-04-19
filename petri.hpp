@@ -46,6 +46,7 @@ public:
     void Add(uint8 idx,string type);
     uint8* getSinks();
     uint8* getSources();
+    string getname(){return name;}
     void plot();
 };
 
